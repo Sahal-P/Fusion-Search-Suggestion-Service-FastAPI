@@ -12,7 +12,7 @@ app.add_event_handler("shutdown",close_mongo_connection)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['http://localhost:3000'],
+    allow_origins=['http://localhost:8001'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
