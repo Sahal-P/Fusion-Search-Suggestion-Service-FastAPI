@@ -33,9 +33,18 @@ async def UserLoginAPIView() -> JSONResponse:
         data.insert(f'sae{i}')
     for i in range(50):
         data.insert(f'saoo{i}')
+        
     return JSONResponse(status_code=HTTP_200_OK, content="Lets Start The Suggestion Service!")
 
 @suggestion.get("/search")  
+async def UserLoginAPIView(prefix: str = Query(...)) -> JSONResponse:
+    try:
+        results = data.search(prefix)
+    except KeyError:
+        return JSONResponse(status_code=HTTP_204_NO_CONTENT, content=[])
+    return JSONResponse(status_code=HTTP_200_OK, content=results)
+
+@suggestion.get("/test")  
 async def UserLoginAPIView(prefix: str = Query(...)) -> JSONResponse:
     try:
         results = data.search(prefix)
